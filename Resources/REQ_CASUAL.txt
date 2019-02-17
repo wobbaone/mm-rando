@@ -1,11 +1,11 @@
-"-0: Deku_Mask
+-0: Deku_Mask
 
 
 0
 0
 -1: Hero_Bow
-WF_ACCESS,WF_Key1
-
+WF_ACCESS
+Hookshot;Deku_Mask,ARROW;Deku_Mask,WF_Key1
 0
 0
 -2: Fire_Arrow
@@ -29,8 +29,8 @@ ST_ACCESS,ARROW,EXPLOSIVE,ST_Key1,ST_Key2
 0
 0
 -6: Magic_Bean
-SOUTH_ACCESS,Deku_Mask
-
+SOUTH_ACCESS
+Deku_Mask;Magic_Bean_Growable
 0
 0
 -7: Powder_Keg
@@ -39,7 +39,7 @@ NORTH_ACCESS,Fire_Arrow,Goron_Mask
 0
 0
 -8: Pictobox
-SOUTH_ACCESS
+Bottle
 
 0
 0
@@ -99,8 +99,8 @@ Fire_Arrow;B_HSW
 0
 12
 -20: G_Sword
-NORTH_ACCESS,Bottle_G
-Fire_Arrow;Bottle_W,B_HSW;Bottle_A,B_HSW;Bottle_B,B_HSW;Bottle_D,B_HSW;Bottle_M,B_HSW
+NORTH_ACCESS,Bottle_A
+Fire_Arrow;Bottle_W,B_HSW;Bottle_G,B_HSW;Bottle_B,B_HSW;Bottle_D,B_HSW;Bottle_M,B_HSW
 0
 48
 -21: M_Shield
@@ -119,7 +119,7 @@ ARROW
 0
 0
 -24: Bomb_Bag_1
-Kafei_Letter,Pendant
+Kafei_Letter
 
 0
 62
@@ -319,8 +319,8 @@ Goron_Mask
 0
 0
 -64: HP_WFChest
-SOUTH_ACCESS,Deku_Mask
-
+SOUTH_ACCESS
+Deku_Mask;WF_CLEAR
 0
 0
 -65: HP_TIChest
@@ -349,7 +349,7 @@ Wallet_2
 0
 32
 -70: Blast_Mask
-Kafei_Letter,Pendant
+Kafei_Letter
 
 0
 2
@@ -490,7 +490,7 @@ IC_ACCESS,ARROW,Fire_Arrow,M_Shield,Powder_Keg
 0
 -98: SOUTH_ACCESS
 
-Bottle_W;Bottle_A;Bottle_G;Bottle_B;Bottle_D;Bottle_M;Hero_Bow,Deku_Mask;Quiver_1,Deku_Mask;Quiver_2,Deku_Mask;Zora_Mask
+Bottle;Deku_Mask,ARROW;Deku_Mask,Hookshot;Zora_Mask;WF_CLEAR
 0
 0
 -99: WF_ACCESS
@@ -499,8 +499,8 @@ Deku_Mask,Song_Sonata,SOUTH_ACCESS
 0
 0
 -100: WF_CLEAR
-WF_ACCESS,ARROW,WF_Map,WF_Comp,WF_BK,WF_Key1
-
+WF_ACCESS,ARROW,WF_BK
+Deku_Mask;Hookshot
 0
 0
 -101: NORTH_ACCESS
@@ -605,12 +605,12 @@ IST_ACCESS,EXPLOSIVE,ARROW,Light_Arrow,Deku_Mask,Goron_Mask,Zora_Mask,Song_Elegy
 0
 -121: WF_Map
 WF_ACCESS
-Deku_Mask;Hookshot
+Deku_Mask;Hookshot,EXPLOSIVE
 0
 0
 -122: WF_Comp
-WF_ACCESS,WF_Key1
-
+WF_ACCESS
+Hookshot;Deku_Mask,ARROW;Deku_Mask,WF_Key1
 0
 0
 -123: WF_BK
@@ -749,7 +749,7 @@ Hookshot;Bomb_Bag;Bomb_Bag_1;Bomb_Bag_2
 0
 0
 -150: WS_BP
-B_Mushroom
+
 
 0
 0
@@ -789,17 +789,17 @@ NORTH_ACCESS
 0
 0
 -158: ZS_Shield
-PF_ACCESS
+WEST_ACCESS
 
 0
 0
 -159: ZS_Arrow10
-PF_ACCESS
+WEST_ACCESS
 
 0
 0
 -160: ZS_RP
-PF_ACCESS
+WEST_ACCESS
 
 0
 0
@@ -1019,13 +1019,13 @@ SOUTH_ACCESS
 0
 0
 -204: WF_BR
-SOUTH_ACCESS,Deku_Mask
-
+SOUTH_ACCESS
+Deku_Mask;WF_CLEAR
 0
 0
 -205: WF_RR
-SOUTH_ACCESS,Deku_Mask
-
+SOUTH_ACCESS
+Deku_Mask;WF_CLEAR
 0
 0
 -206: Well_Right_PR
@@ -1219,8 +1219,8 @@ Goron_Mask;Zora_Mask
 0
 0
 -244: WF_HC
-WF_ACCESS,ARROW,Deku_Mask,WF_Map,WF_Comp,WF_BK,WF_Key1
-
+WF_ACCESS,ARROW,WF_BK
+Deku_Mask;Hookshot
 0
 0
 -245: SH_HC
@@ -1271,5 +1271,50 @@ Hero_Bow;Quiver_1;Quiver_2;Hookshot
 -254: To_GR_Grotto
 NORTH_ACCESS,EXPLOSIVE,Goron_Mask
 
+0
+0
+-255: Wallet
+
+Wallet_1;Wallet_2
+0
+0
+-256: Bottle
+
+Bottle_W;Bottle_A;Bottle_G;Bottle_B;Bottle_D;Bottle_M
+0
+0
+-257: Bombchus
+
+Bomb_Bag,BS_Chu10;Bomb_Bag,Termina_Bombchu_Grotto;Bomb_Bag,IST_10Chu;Bomb_Bag_1,BS_Chu10;Bomb_Bag_1,Termina_Bombchu_Grotto;Bomb_Bag_1,IST_10Chu;Bomb_Bag_2,BS_Chu10;Bomb_Bag_2,Termina_Bombchu_Grotto;Bomb_Bag_2,IST_10Chu
+0
+0
+-258: Magic_Bean_Growable
+
+Magic_Bean,Song_Storms;Magic_Bean,Bottle;Deku_Mask,SOUTH_ACCESS,Song_Storms;Deku_Mask,SOUTH_ACCESS,Bottle
+0
+0
+-259: Snowhead_Key_Count_1
+
+SH_Key1;SH_Key2;SH_Key3
+0
+0
+-260: Snowhead_Key_Count_2
+
+SH_Key1,SH_Key2;SH_Key1,SH_Key3;SH_Key2,SH_Key3
+0
+0
+-261: Stone_Tower_Key_Count_1
+
+ST_Key1;ST_Key2;ST_Key3;ST_Key4
+0
+0
+-262: Stone_Tower_Key_Count_2
+
+ST_Key1,ST_Key2;ST_Key1,ST_Key3;ST_Key1,ST_Key4;ST_Key2,ST_Key3;ST_Key2,ST_Key4;ST_Key3,ST_Key4
+0
+0
+-263: Stone_Tower_Key_Count_3
+
+ST_Key1,ST_Key2,ST_Key3;ST_Key1,ST_Key2,ST_Key4;ST_Key1,ST_Key3,ST_Key4;ST_Key2,ST_Key3,ST_Key4
 0
 0
