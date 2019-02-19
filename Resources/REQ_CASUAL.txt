@@ -9,12 +9,12 @@ Hookshot;Deku_Mask,ARROW;Deku_Mask,WF_Key1
 0
 0
 -2: Fire_Arrow
-SH_ACCESS,ARROW,SH_Key1,SH_Key2
-Bomb_Bag;Bomb_Bag_1;Bomb_Bag_2;Blast_Mask
+SH_ACCESS
+ARROW,Fire_Arrow,Goron_Mask;ARROW,Fire_Arrow,Zora_Mask;Hookshot,Goron_Mask;EXPLOSIVE,Goron_Mask,Snowhead_Key_Count_2
 0
 0
 -3: Ice_Arrow
-GB_ACCESS,ARROW,GB_Key1
+GB_ACCESS,GB_Key1,Hookshot,Zora_Mask
 
 0
 0
@@ -50,7 +50,7 @@ NORTH_ACCESS
 0
 -10: Hookshot
 PF_ACCESS
-Goron_Mask,Hero_Bow;Goron_Mask,Deku_Mask;Hookshot,Hero_Bow;Hookshot,Deku_Mask;Goron_Mask,Quiver_1;Goron_Mask,Quiver_2;Hookshot,Quiver_1;Hookshot,Quiver_2
+Goron_Mask,ARROW;Goron_Mask,Deku_Mask;Hookshot,ARROW;Hookshot,Deku_Mask
 0
 0
 -11: Fairy_Sword
@@ -134,7 +134,7 @@ NORTH_ACCESS,Wallet,Goron_Mask
 0
 0
 -27: Wallet_2
-PF_ACCESS,Hookshot,Goron_Mask,ARROW,Fire_Arrow
+Song_Epona,Hookshot,Goron_Mask,ARROW,Fire_Arrow,EXPLOSIVE
 
 0
 3
@@ -329,7 +329,7 @@ SH_CLEAR,Zora_Mask
 0
 0
 -66: HP_OceanSH
-WEST_ACCESS,ARROW,Hookshot,Captain_Hat
+Song_Epona,ARROW,Hookshot,EXPLOSIVE
 
 0
 0
@@ -474,7 +474,7 @@ NORTH_ACCESS,Goron_Mask
 0
 0
 -95: Song_NWBN
-PF_ACCESS,Hookshot,B_Egg
+PF_ACCESS,B_Egg
 
 0
 0
@@ -514,7 +514,7 @@ NORTH_ACCESS,Song_Lullaby,Goron_Mask
 0
 0
 -103: SH_CLEAR
-SH_ACCESS,ARROW,Fire_Arrow,SH_Map,SH_Comp,SH_BK,SH_Key1,SH_Key2,SH_Key3
+SH_ACCESS,Goron_Mask,ARROW,Fire_Arrow,Snowhead_Key_Count_1,SH_BK
 
 0
 0
@@ -534,12 +534,12 @@ WEST_ACCESS,Zora_Mask
 0
 0
 -107: GB_ACCESS
-PF_ACCESS,Song_NWBN
+PF_ACCESS,Song_NWBN,Hookshot
 
 0
 0
 -108: GB_CLEAR
-GB_ACCESS,ARROW,Ice_Arrow,Fire_Arrow,GB_Map,GB_Comp,GB_BK,GB_Key1
+GB_ACCESS,ARROW,Ice_Arrow,Fire_Arrow,GB_BK,Zora_Mask,Hookshot
 
 0
 0
@@ -625,32 +625,32 @@ Deku_Mask;Hookshot
 0
 -125: SH_Map
 SH_ACCESS
-Goron_Mask;Zora_Mask,Hookshot
+Goron_Mask;ARROW,Fire_Arrow,Zora_Mask;Snowhead_Key_Count_1,Hookshot,Zora_Mask
 0
 0
 -126: SH_Comp
-SH_ACCESS,SH_Key1
-
+SH_ACCESS
+Snowhead_Key_Count_1,Goron_Mask;Snowhead_Key_Count_1,Zora_Mask;ARROW,Fire_Arrow,Zora_Mask;Goron_Mask,Hookshot;Goron_Mask,Zora_Mask
 0
 0
 -127: SH_BK
-SH_ACCESS,Goron_Mask,SH_Key2,SH_Key3
+Goron_Mask,ARROW,Fire_Arrow,Snowhead_Key_Count_1
 
 0
 0
 -128: SH_Key1
 SH_ACCESS
-Goron_Mask;Zora_Mask,Hookshot
+Goron_Mask;ARROW,Fire_Arrow,Zora_Mask;Snowhead_Key_Count_1,Hookshot,Zora_Mask
 0
 0
 -129: SH_Key2
-SH_ACCESS,SH_Key1,EXPLOSIVE
-
+SH_ACCESS
+EXPLOSIVE,Hookshot,Snowhead_Key_Count_1,Goron_Mask;EXPLOSIVE,Hookshot,Snowhead_Key_Count_1,Zora_Mask;EXPLOSIVE,ARROW,Snowhead_Key_Count_1,Goron_Mask;EXPLOSIVE,ARROW,Snowhead_Key_Count_1,Zora_Mask;EXPLOSIVE,Fire_Arrow,Hookshot,ARROW,Goron_Mask;EXPLOSIVE,Fire_Arrow,Zora_Mask,ARROW;Goron_Mask,Zora_Mask,EXPLOSIVE;Goron_Mask,Snowhead_Key_Count_1,Hookshot,Zora_Mask;Goron_Mask,Snowhead_Key_Count_1,EXPLOSIVE,Fire_Arrow
 0
 0
 -130: SH_Key3
-SH_ACCESS,ARROW,Fire_Arrow
-Goron_Mask;Zora_Mask
+SH_ACCESS
+ARROW,Fire_Arrow,Goron_Mask;ARROW,Fire_Arrow,Zora_Mask;Hookshot,Goron_Mask;Hookshot,Zora_Mask
 0
 0
 -131: GB_Map
@@ -659,17 +659,17 @@ GB_ACCESS,Zora_Mask,Hookshot
 0
 0
 -132: GB_Comp
-GB_ACCESS,Zora_Mask
+GB_ACCESS,Zora_Mask,Hookshot
 
 0
 0
 -133: GB_BK
-GB_ACCESS,ARROW,Ice_Arrow,Zora_Mask
+GB_ACCESS,ARROW,Ice_Arrow,Fire_Arrow,Zora_Mask,Hookshot
 
 0
 0
 -134: GB_Key1
-GB_ACCESS,Zora_Mask
+GB_ACCESS,Zora_Mask,Hookshot
 
 0
 0
@@ -840,12 +840,12 @@ Bottle
 0
 -168: B_HSW
 Bottle
-NORTH_ACCESS,Goron_Mask,Lens;ARROW,Fire_Arrow;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,EXPLOSIVE,B_Mushroom;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,Zora_Mask,B_Mushroom;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,EXPLOSIVE,WS_BP;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,Zora_Mask,WS_BP;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,EXPLOSIVE,Wallet;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,Zora_Mask,Wallet
+NORTH_ACCESS,Goron_Mask,Lens;ARROW,Fire_Arrow;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,EXPLOSIVE,B_Mushroom,ARROW,Ice_Arrow;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,Zora_Mask,B_Mushroom,ARROW,Ice_Arrow;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,EXPLOSIVE,WS_BP,ARROW,Ice_Arrow;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,Zora_Mask,WS_BP,ARROW,Ice_Arrow;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,EXPLOSIVE,Wallet,ARROW,Ice_Arrow;Song_Epona,Hookshot,Gibdo_Mask,B_Fish,Zora_Mask,Wallet,ARROW,Ice_Arrow
 0
 0
 -169: B_Egg
-PF_ACCESS,B_Fish,Bottle
-
+PF_ACCESS,Bottle,Hookshot,B_Fish
+ARROW;Deku_Mask
 0
 0
 -170: B_Mushroom
@@ -870,7 +870,7 @@ SOUTH_ACCESS,Deku_Mask,Hookshot
 0
 -174: HSW_Grotto_RR
 NORTH_ACCESS,EXPLOSIVE
-Fire_Arrow;B_HSW
+Fire_Arrow,ARROW;B_HSW
 0
 0
 -175: BG_Bad_Bats
@@ -964,7 +964,7 @@ WEST_ACCESS
 0
 0
 -193: GB_Cape_Ledge_1
-WEST_ACCESS,Hookshot,Deku_Mask
+WEST_ACCESS,Hookshot
 
 0
 0
@@ -975,7 +975,7 @@ WEST_ACCESS,Hookshot
 0
 -195: GB_Cape_Grotto
 WEST_ACCESS
-Bomb_Bag;Bomb_Bag_1;Bomb_Bag_2;Blast_Mask;Goron_Mask
+EXPLOSIVE;Goron_Mask
 0
 0
 -196: GB_Cape_Underwater
@@ -1044,8 +1044,8 @@ SH_CLEAR
 0
 0
 -209: MV_Grotto
-SH_CLEAR,Goron_Mask
-
+SH_CLEAR
+Goron_Mask;Zora_Mask
 0
 0
 -210: To_Ikana_RR
@@ -1204,7 +1204,7 @@ NORTH_ACCESS,Goron_Mask,Hookshot
 0
 0
 -241: GB_Coast_HP
-PF_ACCESS,Hookshot,Magic_Bean,B_SW
+WEST_ACCESS,Hookshot,Magic_Bean_Growable
 
 0
 0
@@ -1224,12 +1224,12 @@ Deku_Mask;Hookshot
 0
 0
 -245: SH_HC
-SH_ACCESS,ARROW,Fire_Arrow,Goron_Mask,EXPLOSIVE,SH_Map,SH_Comp,SH_BK,SH_Key1,SH_Key2,SH_Key3
+SH_ACCESS,Goron_Mask,ARROW,Fire_Arrow,Snowhead_Key_Count_1,SH_BK
 
 0
 0
 -246: GB_HC
-GB_ACCESS,Zora_Mask,ARROW,Fire_Arrow,Ice_Arrow,EXPLOSIVE,Hookshot,GB_Map,GB_Comp,GB_BK,GB_Key1
+GB_ACCESS,ARROW,Ice_Arrow,Fire_Arrow,GB_BK,Zora_Mask,Hookshot
 
 0
 0
@@ -1290,7 +1290,7 @@ Bomb_Bag,BS_Chu10;Bomb_Bag,Termina_Bombchu_Grotto;Bomb_Bag,IST_10Chu;Bomb_Bag_1,
 0
 -258: Magic_Bean_Growable
 
-Magic_Bean,Song_Storms;Magic_Bean,Bottle;Deku_Mask,SOUTH_ACCESS,Song_Storms;Deku_Mask,SOUTH_ACCESS,Bottle
+Magic_Bean,Song_Storms;Magic_Bean,B_SW;Magic_Bean,B_HSW;Deku_Mask,SOUTH_ACCESS,Song_Storms;Deku_Mask,SOUTH_ACCESS,B_SW;Deku_Mask,SOUTH_ACCESS,B_HSW
 0
 0
 -259: Snowhead_Key_Count_1
