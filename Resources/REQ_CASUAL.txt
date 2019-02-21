@@ -20,7 +20,7 @@ GB_ACCESS,GB_Key1,Hookshot,Zora_Mask
 0
 -4: Light_Arrow
 ST_ACCESS,Stone_Tower_Key_Count_1,Deku_Mask
-ARROW,Light_Arrow;Goron_Mask,M_Shield
+ARROW,Light_Arrow;Goron_Mask,M_Shield,Zora_Mask,Stone_Tower_Key_Count_2,EXPLOSIVE
 0
 0
 -5: Bomb_Bag
@@ -675,7 +675,7 @@ GB_ACCESS,Zora_Mask,Hookshot
 0
 -135: ST_Map
 ST_ACCESS
-Goron_Mask,Song_Elegy,M_Shield,EXPLOSIVE;Goron_Mask,Song_Elegy,ARROW,EXPLOSIVE,Light_Arrow;Zora_Mask,Stone_Tower_Key_Count_1,M_Shield,EXPLOSIVE;Zora_Mask,Stone_Tower_Key_Count_1,ARROW,Light_Arrow
+Goron_Mask,Song_Elegy,M_Shield,EXPLOSIVE;Goron_Mask,Song_Elegy,ARROW,EXPLOSIVE,Light_Arrow;Zora_Mask,Stone_Tower_Key_Count_1,ARROW,Light_Arrow
 0
 0
 -136: ST_Comp
@@ -690,12 +690,12 @@ IST_ACCESS,Light_Arrow,ARROW,Deku_Mask,Stone_Tower_Key_Count_1,Hookshot
 0
 -138: ST_Key1
 ST_ACCESS
-Goron_Mask,Song_Elegy,M_Shield,EXPLOSIVE;Goron_Mask,Song_Elegy,ARROW,EXPLOSIVE,Light_Arrow;Zora_Mask,Stone_Tower_Key_Count_1,M_Shield,EXPLOSIVE;Zora_Mask,Stone_Tower_Key_Count_1,ARROW,Light_Arrow
+Goron_Mask,Song_Elegy,M_Shield,EXPLOSIVE;Goron_Mask,Song_Elegy,ARROW,EXPLOSIVE,Light_Arrow;Zora_Mask,Stone_Tower_Key_Count_1,ARROW,Light_Arrow
 0
 0
 -139: ST_Key2
 ST_ACCESS
-Goron_Mask,Song_Elegy,Stone_Tower_Key_Count_1,Zora_Mask;Goron_Mask,Song_Elegy,Stone_Tower_Key_Count_1,Song_Soaring;Light_Arrow,ARROW,Zora_Mask
+Goron_Mask,Song_Elegy,Stone_Tower_Key_Count_1,Zora_Mask,EXPLOSIVE;Goron_Mask,Song_Elegy,Stone_Tower_Key_Count_1,Song_Soaring,EXPLOSIVE;Light_Arrow,ARROW,Zora_Mask
 0
 0
 -140: ST_Key3
