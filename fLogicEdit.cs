@@ -317,7 +317,7 @@ namespace MMRando
                         {
                             foreach (string j in lines[i].Split(','))
                             {
-                                l.Dependence.Add(Convert.ToInt32(j));
+                                l.Dependence.Add(mmrMain.ItemDataToID(j));
                             };
                         };
                         l.Conditional = new List<List<int>>();
@@ -328,7 +328,7 @@ namespace MMRando
                                 List<int> c = new List<int>();
                                 foreach (string k in j.Split(','))
                                 {
-                                    c.Add(Convert.ToInt32(k));
+                                    c.Add(mmrMain.ItemDataToID(k));
                                 };
                                 l.Conditional.Add(c);
                             };

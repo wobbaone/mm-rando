@@ -100,6 +100,7 @@
     <Compile Include="NewItemForm.Designer.cs">
       <DependentUpon>NewItemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResourceConvert.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Enemies.cs" />
     <Compile Include="Entrance.cs" />

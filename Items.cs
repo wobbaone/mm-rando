@@ -586,14 +586,19 @@ namespace MMRando
         // "5" -> "Bomb_Bag"
         // "Powder_Keg" -> "Powder_Keg"
         // "HP_Choir" -> "HP_Choir"
+        //
+        // "9999" -> "9999"
+        // "Fake_Item" -> "Fake_Item"
         public static string ItemDataToName(string item) {
             string trimmedItem = item.Trim();
 
             if(int.TryParse(trimmedItem, out int id)) {
-                return _itemNameDictionary.ElementAt(id).Key;
-            } else {
-                return trimmedItem;
+                if(_itemNameDictionary.Count > id) {
+                    return _itemNameDictionary.ElementAt(id).Key;
+                }
             }
+
+            return trimmedItem;
         }
     }
 }
