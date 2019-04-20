@@ -422,7 +422,7 @@ namespace MMRando
                                 {
                                     foreach (string k in l.Split(','))
                                     {
-                                        dependence.Add(Convert.ToInt32(k));
+                                        dependence.Add(ItemDataToID(k));
                                     };
                                     CurrentItem.Dependence = dependence;
                                 };
@@ -437,7 +437,7 @@ namespace MMRando
                                 {
                                     foreach (string k in l.Split(';'))
                                     {
-                                        int[] conditionaloption = Array.ConvertAll(k.Split(','), int.Parse);
+                                        int[] conditionaloption = Array.ConvertAll(k.Split(','), ItemDataToID);
                                         conditional.Add(conditionaloption.ToList());
                                     };
                                     CurrentItem.Conditional = conditional;

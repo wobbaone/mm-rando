@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace MMRando
 {
@@ -537,6 +539,61 @@ namespace MMRando
         "Odolwa Heart Container", "Goht Heart Container", "Gyorg Heart Container", "Twinmold Heart Container", "Map: Clock Town", "Map: Woodfall",
         "Map: Snowhead", "Map: Romani Ranch", "Map: Great Bay", "Map: Stone Tower", "Goron Racetrack Grotto" };
 
-    }
 
+        // Build dictionary of item names to reference the constant items by name at runtime
+        private static Dictionary<string, int> _itemNameDictionary = BuildItemNameDictionary();
+        private static Dictionary<string, int> BuildItemNameDictionary() {
+            Dictionary<string, int> itemNames = new Dictionary<string, int>();
+
+            FieldInfo[] fieldInfos = typeof(mmrMain).GetFields(BindingFlags.NonPublic | BindingFlags.Static);
+            foreach(FieldInfo info in fieldInfos) {
+                if(info.IsLiteral && !info.IsInitOnly && info.FieldType == typeof(int)) {
+                    itemNames.Add(info.Name, (int)info.GetValue(null));
+                }
+            }
+
+            return itemNames;
+        }
+
+        // Gets id from item name or id
+        // 
+        // Examples:
+        // Input -> Output
+        // ------------------
+        // "0" -> 0
+        // "5" -> 5
+        // "Powder_Keg" -> 7
+        // "HP_Choir" -> 54
+        public static int ItemDataToID(string item) {
+            string trimmedItem = item.Trim();
+            try {
+                return Convert.ToInt32(trimmedItem);
+            } catch {
+                if(_itemNameDictionary.ContainsKey(trimmedItem)) {
+                    return _itemNameDictionary[trimmedItem];
+                } else {
+                    throw new KeyNotFoundException("Could not find item: " + trimmedItem);
+                }
+            }
+        }
+
+        // Gets item name from item name or id
+        // 
+        // Examples:
+        // Input -> Output
+        // ------------------
+        // "0" -> "Deku_Mask"
+        // "5" -> "Bomb_Bag"
+        // "Powder_Keg" -> "Powder_Keg"
+        // "HP_Choir" -> "HP_Choir"
+        public static string ItemDataToName(string item) {
+            string trimmedItem = item.Trim();
+
+            if(int.TryParse(trimmedItem, out int id)) {
+                return _itemNameDictionary.ElementAt(id).Key;
+            } else {
+                return trimmedItem;
+            }
+        }
+    }
 }
