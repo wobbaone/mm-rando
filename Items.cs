@@ -566,9 +566,9 @@ namespace MMRando
         // "HP_Choir" -> 54
         public static int ItemDataToID(string item) {
             string trimmedItem = item.Trim();
-            try {
+            if(trimmedItem.All(char.IsDigit)) {
                 return Convert.ToInt32(trimmedItem);
-            } catch {
+            } else {
                 if(_itemNameDictionary.ContainsKey(trimmedItem)) {
                     return _itemNameDictionary[trimmedItem];
                 } else {

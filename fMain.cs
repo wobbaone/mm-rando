@@ -287,6 +287,10 @@ namespace MMRando
                     MessageBox.Show("Cannot verify input ROM is Majora's Mask (U).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            else 
+            {
+                MessageBox.Show("No output selected; ROM will not be saved.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void tSString_Enter(object sender, EventArgs e)
