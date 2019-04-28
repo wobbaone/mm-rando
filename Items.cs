@@ -551,7 +551,7 @@ namespace MMRando
 
 
         // Build dictionary of item names to reference the constant items by name at runtime
-        private static Dictionary<string, int> _itemNameDictionary = BuildItemNameDictionary();
+        public static Dictionary<string, int> ItemNameDictionary = BuildItemNameDictionary();
         private static Dictionary<string, int> BuildItemNameDictionary() {
             Dictionary<string, int> itemNames = new Dictionary<string, int>();
 
@@ -579,8 +579,8 @@ namespace MMRando
             if(trimmedItem.All(char.IsDigit)) {
                 return Convert.ToInt32(trimmedItem);
             } else {
-                if(_itemNameDictionary.ContainsKey(trimmedItem)) {
-                    return _itemNameDictionary[trimmedItem];
+                if(ItemNameDictionary.ContainsKey(trimmedItem)) {
+                    return ItemNameDictionary[trimmedItem];
                 } else {
                     throw new KeyNotFoundException("Could not find item: " + trimmedItem);
                 }
@@ -603,8 +603,8 @@ namespace MMRando
             string trimmedItem = item.Trim();
 
             if(int.TryParse(trimmedItem, out int id)) {
-                if(_itemNameDictionary.Count > id) {
-                    return _itemNameDictionary.ElementAt(id).Key;
+                if(ItemNameDictionary.Count > id) {
+                    return ItemNameDictionary.ElementAt(id).Key;
                 }
             }
 

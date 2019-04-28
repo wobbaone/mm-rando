@@ -12,18 +12,24 @@ namespace MMRando {
 
             StringBuilder newOutput = new StringBuilder();
 
-            // Remove comments
+            // Remove comments for default items
             List<string> nonCommentLines = new List<string>();
+            int expectedLineCount = mmrMain.ItemNameDictionary.Count * 4;
+
             for(int i = 0; i < lines.Length; i++) {
-                if(!lines[i].Contains('-')) {
+                if(!lines[i].Contains('-') || i >= expectedLineCount) {
                     nonCommentLines.Add(lines[i]);
                 }
             }
             lines = nonCommentLines.ToArray();
 
             for(int i = 0, itemID = 0; i < lines.Length; itemID++) {
-                // Print Name
-                newOutput.AppendLine("-" + itemID + ": " + mmrMain.ItemDataToName(itemID.ToString()));
+                // Comment will still exist for custom items otherwise print normally
+                if(lines[i].Contains('-')) {
+                    newOutput.AppendLine(lines[i++]);
+                } else {
+                    newOutput.AppendLine("-" + itemID + ": " + mmrMain.ItemDataToName(itemID.ToString()));
+                }
 
                 // Print Dependancies
                 newOutput.AppendLine(ConvertCommaSeperatedItemsToNames(lines[i++]));
@@ -49,7 +55,8 @@ namespace MMRando {
                 newOutput.AppendLine(lines[i++]);
             }
 
-            return newOutput.ToString().Substring(0, newOutput.Length - 1);
+            string outputResult = newOutput.ToString().TrimEnd('\r', '\n');
+            return outputResult;
         }
 
         private static string ConvertCommaSeperatedItemsToNames(string items) {

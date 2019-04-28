@@ -400,7 +400,7 @@ namespace MMRando
             int j = 0;
             if (lines == null)
             {
-                for (i = 0; i < 255; i++)
+                for (i = 0; i < ItemNameDictionary.Count; i++)
                 {
                     CurrentItem.ID = i;
                     CurrentItem.Dependence = null;
@@ -992,7 +992,7 @@ namespace MMRando
                 TargetPool = new List<int>();
                 for (int i = 0; i < ItemList.Count; i++)
                 {
-                    if (((i > Song_Oath) && (i < WF_Map)) || (ItemList[i].Replaces != -1))
+                    if (((i > Song_Oath) && (i < WF_Map)) || (ItemList[i].Replaces != -1) || ((i > To_GR_Grotto) && (i <= Stone_Tower_Key_Count_3)))
                     {
                         continue;
                     };

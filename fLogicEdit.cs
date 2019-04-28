@@ -12,7 +12,7 @@ namespace MMRando
 {
     public partial class fLogicEdit : Form
     {
-        private static readonly string[] DEFAULT_ITEM_NAMES = new string[] { "Deku Mask", "Hero's Bow", "Fire Arrow", "Ice Arrow", "Light Arrow", "Bomb Bag (20)", "Magic Bean", 
+        internal static readonly string[] DEFAULT_ITEM_NAMES = new string[] { "Deku Mask", "Hero's Bow", "Fire Arrow", "Ice Arrow", "Light Arrow", "Bomb Bag (20)", "Magic Bean", 
         "Powder Keg", "Pictobox", "Lens of Truth", "Hookshot", "Great Fairy's Sword", "Witch Bottle", "Aliens Bottle", "Goron Race Bottle", 
         "Beaver Race Bottle", "Dampe Bottle", "Chateau Bottle", "Bombers' Notebook", "Razor Sword", "Gilded Sword", "Mirror Shield",
         "Town Archery Quiver (40)", "Swamp Archery Quiver (50)", "Town Bomb Bag (30)", "Mountain Bomb Bag (40)", "Town Wallet (200)", "Ocean Wallet (500)", "Moon's Tear", 
@@ -351,46 +351,48 @@ namespace MMRando
         {
             if (saveLogic.ShowDialog() == DialogResult.OK)
             {
-                StreamWriter LogicFile = new StreamWriter(File.Open(saveLogic.FileName, FileMode.Create));
-                for (int i = 0; i < ItemList.Count; i++)
-                {
-                    LogicFile.WriteLine("- " + ITEM_NAMES[i]);
-                    for (int j = 0; j < ItemList[i].Dependence.Count; j++)
-                    {
-                        LogicFile.Write(ItemList[i].Dependence[j].ToString());
-                        if (j != ItemList[i].Dependence.Count - 1)
-                        {
-                            LogicFile.Write(",");
-                        };
-                    };
-                    LogicFile.WriteLine();
-                    for (int j = 0; j < ItemList[i].Conditional.Count; j++)
-                    {
-                        for (int k = 0; k < ItemList[i].Conditional[j].Count; k++)
-                        {
-                            LogicFile.Write(ItemList[i].Conditional[j][k].ToString());
-                            if (k != ItemList[i].Conditional[j].Count - 1)
-                            {
-                                LogicFile.Write(",");
-                            };
-                        };
-                        if (j != ItemList[i].Conditional.Count - 1)
-                        {
-                            LogicFile.Write(";");
-                        };
-                    };
-                    LogicFile.WriteLine();
-                    LogicFile.WriteLine(ItemList[i].Time_Needed);
-                    if (i != ItemList.Count - 1)
-                    {
-                        LogicFile.WriteLine(ItemList[i].Time_Available);
+                StringBuilder itemOutput = new StringBuilder();
+                for(int i = 0; i < ItemList.Count; i++) {
+                    // Print name for custom items
+                    if(i >= mmrMain.ItemNameDictionary.Count) {
+                        itemOutput.AppendLine("- " + ITEM_NAMES[i]);
                     }
-                    else
-                    {
-                        LogicFile.Write(ItemList[i].Time_Available);
-                    };
-                };
-                LogicFile.Close();
+
+                    // Print dependancies
+                    for(int j = 0; j < ItemList[i].Dependence.Count; j++) {
+                        itemOutput.Append(ItemList[i].Dependence[j].ToString());
+                        if(j != ItemList[i].Dependence.Count - 1) {
+                            itemOutput.Append(",");
+                        }
+                    }
+                    itemOutput.AppendLine();
+
+                    // Print conditionals
+                    for(int j = 0; j < ItemList[i].Conditional.Count; j++) {
+                        for(int k = 0; k < ItemList[i].Conditional[j].Count; k++) {
+                            itemOutput.Append(ItemList[i].Conditional[j][k].ToString());
+                            if(k != ItemList[i].Conditional[j].Count - 1) {
+                                itemOutput.Append(",");
+                            }
+                        }
+                        if(j != ItemList[i].Conditional.Count - 1) {
+                            itemOutput.Append(";");
+                        }
+                    }
+                    itemOutput.AppendLine();
+
+                    // Print time needed
+                    itemOutput.AppendLine(ItemList[i].Time_Needed.ToString());
+
+                    // Print time available
+                    itemOutput.AppendLine(ItemList[i].Time_Available.ToString());
+                }
+
+                string itemOutputResult = itemOutput.ToString().TrimEnd('\r', '\n');
+                using(StreamWriter logicFile = new StreamWriter(File.Open(saveLogic.FileName, FileMode.Create))) {
+                    logicFile.Write(ResourceConvert.ConvertLogicToNames(itemOutputResult));
+                    logicFile.Close();
+                }
             };
         }
 
