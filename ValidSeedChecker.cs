@@ -62,6 +62,7 @@ namespace MMRando {
         // on to look in past locations.
         public bool IsValidSeed(List<mmrMain.ItemObject> items) {
             HashSet<int> obtainableItems = new HashSet<int>();
+            HashSet<int> replacementLocations = new HashSet<int>();
 
             // Continue searching until no new items are found from a pass
             int oldCount = -1;
@@ -86,7 +87,15 @@ namespace MMRando {
                     }
 
                     if(canObtain) {
+                        if(replacementLocations.Contains(itemData.Replaces)) {
+                            return false;
+                        }
+
                         obtainableItems.Add(itemData.ID);
+                        
+                        if(itemData.Replaces != -1) {
+                            replacementLocations.Add(itemData.Replaces);
+                        }
                     }
                 }
             }

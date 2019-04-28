@@ -847,21 +847,34 @@ namespace MMRando
 
         private void PlaceItem(int CurrentItem, List<int> Targets)
         {
+            int[] slotsToCheck;
+            if((((CurrentItem > Wallet_2) && (CurrentItem < HP_Mayor)) || (CurrentItem > Song_Oath)) && (Targets.Contains(0))) {
+                slotsToCheck = new int[Targets.Count - 1];
+                for(int i = 0; i < slotsToCheck.Length; i++) {
+                    slotsToCheck[i] = i + 1;
+                }
+            } else {
+                slotsToCheck = new int[Targets.Count];
+                for(int i = 0; i < slotsToCheck.Length; i++) {
+                    slotsToCheck[i] = i;
+                }
+            }
+
+            for(int i = 0; i < slotsToCheck.Length - 1; i++) {
+                int j = RNG.Next(i, slotsToCheck.Length);
+
+                int temp = slotsToCheck[i];
+                slotsToCheck[i] = slotsToCheck[j];
+                slotsToCheck[j] = temp;
+            }
+
             if (ItemList[CurrentItem].Replaces != -1)
             {
                 return;
             };
-            while (true)
+            for(int i = 0; i < slotsToCheck.Length; i++)
             {
-                int TargetSlot = 0;
-                if ((((CurrentItem > Wallet_2) && (CurrentItem < HP_Mayor)) || (CurrentItem > Song_Oath)) && (Targets.Contains(0)))
-                {
-                    TargetSlot = RNG.Next(1, Targets.Count);
-                }
-                else
-                {
-                    TargetSlot = RNG.Next(Targets.Count);
-                };
+                int TargetSlot = slotsToCheck[i];
                 if (CheckMatch(CurrentItem, Targets[TargetSlot]))
                 {
                     ItemList[CurrentItem].Replaces = Targets[TargetSlot];
@@ -873,6 +886,8 @@ namespace MMRando
                     return;
                 };
             };
+
+            ItemList[CurrentItem].Replaces = 0;
         }
 
         private bool ItemShuffle()
