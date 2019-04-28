@@ -119,6 +119,7 @@ namespace MMRando
                 .ToList()
             },
         };
+        Dictionary<int, List<int>> CustomForbiddenPlacement = null;
 
         //rando functions
 
@@ -391,6 +392,8 @@ namespace MMRando
         private void ReadRulesetItemData()
         {
             ItemList = new List<ItemObject>();
+            CustomForbiddenPlacement = null;
+
             string[] lines;
             if (cMode.SelectedIndex == 0)
             {
@@ -411,12 +414,8 @@ namespace MMRando
                 lines = null;
             };
             ItemObject CurrentItem = new ItemObject();
-            int i = 0;
-            int j = 0;
-            if (lines == null)
-            {
-                for (i = 0; i < ItemNameDictionary.Count; i++)
-                {
+            if(lines == null) {
+                for(int i = 0; i < ItemNameDictionary.Count; i++) {
                     CurrentItem.ID = i;
                     CurrentItem.Dependence = null;
                     CurrentItem.Conditional = null;
@@ -425,70 +424,112 @@ namespace MMRando
                     ItemList.Add(CurrentItem);
                     CurrentItem = new ItemObject();
                 };
-            }
-            else
-            {
-                foreach (string l in lines)
-                {
-                    if (!(l.Contains("-")))
-                    {
-                        List<int> dependence = new List<int>();
-                        List<List<int>> conditional = new List<List<int>>();
-                        switch (j)
-                        {
-                            case 0:
-                                //dependence
-                                if (l == "")
-                                {
-                                    CurrentItem.Dependence = null;
+            } else {
+                for(int i = 0, itemID = 0; i < lines.Length; itemID++) {
+                    // Names and comments
+                    while(i < lines.Length && lines[i].Contains('-')) {
+                        // Break on any special sections we add
+                        if(InSpecialSection(lines[i])) {
+                            break;
+                        } else {
+                            i += 1;
+                        }
+                    }
+
+                    // Check if there are still items listed under the comments
+                    if(i >= lines.Length) {
+                        break;
+                    }
+
+                    // Found ForbiddenPlacement list, handle them
+                    if(lines[i].Contains("--Forbidden Item Placements--")) {
+                        CustomForbiddenPlacement = new Dictionary<int, List<int>>();
+
+                        for(++i; i < lines.Length; i++) {
+                            // Data will be in the format of:
+                            // -ITEM_A:ITEM_B,ITEM_C,ITEM_E-ITEM_G
+                            // 
+                            // This allows both individual items:
+                            // -ITEM_A:ITEM_B
+                            //
+                            // And ranges of items:
+                            // -ITEM_A:ITEM_B-ITEM_Z
+                            //
+                            // All is still in "comments" to maintain backwards compatibility
+
+                            //split and remove hyphen
+                            string[] splitLine = lines[i].Substring(1, lines[i].Length - 1).Split(':');
+
+                            // Item id of forbidden placement key
+                            int itemKey = ItemDataToID(splitLine[0]);
+                            if(!CustomForbiddenPlacement.ContainsKey(itemKey)) {
+                                CustomForbiddenPlacement.Add(itemKey, new List<int>());
+                            }
+
+                            string[] itemDataList = splitLine[1].Split(',');
+                            for(int j = 0; j < itemDataList.Length; j++) {
+                                string itemData = itemDataList[j];
+
+                                // Handle range
+                                if(itemData.Contains('-')) {
+                                    string[] rangeData = itemData.Split('-');
+
+                                    int startItem = ItemDataToID(rangeData[0]);
+                                    int endItem = ItemDataToID(rangeData[1]);
+
+                                    CustomForbiddenPlacement[itemKey].AddRange(Enumerable.Range(startItem, endItem - startItem + 1));
+                                } else {
+                                    CustomForbiddenPlacement[itemKey].Add(ItemDataToID(itemData));
                                 }
-                                else
-                                {
-                                    foreach (string k in l.Split(','))
-                                    {
-                                        dependence.Add(ItemDataToID(k));
-                                    };
-                                    CurrentItem.Dependence = dependence;
-                                };
-                                break;
-                            case 1:
-                                //conditionals
-                                if (l == "")
-                                {
-                                    CurrentItem.Conditional = null;
-                                }
-                                else
-                                {
-                                    foreach (string k in l.Split(';'))
-                                    {
-                                        int[] conditionaloption = Array.ConvertAll(k.Split(','), ItemDataToID);
-                                        conditional.Add(conditionaloption.ToList());
-                                    };
-                                    CurrentItem.Conditional = conditional;
-                                };
-                                break;
-                            case 2:
-                                //time needed
-                                CurrentItem.Time_Needed = Convert.ToInt32(l);
-                                break;
-                            case 3:
-                                //time available
-                                CurrentItem.Time_Available = Convert.ToInt32(l);
-                                if (CurrentItem.Time_Available == 0) { CurrentItem.Time_Available = 63; };
-                                break;
-                        };
-                        j++;
-                        if (j == 4)
-                        {
-                            CurrentItem.ID = i;
-                            ItemList.Add(CurrentItem);
-                            CurrentItem = new ItemObject();
-                            i++;
-                            j = 0;
-                        };
-                    };
-                };
+                            }
+                        }
+
+                        // Forbidden item data should only appear at the bottom of the logic
+                        break;
+                    }
+
+                    // Dependancies
+                    string dependancies = lines[i++];
+                    if(dependancies.Equals(string.Empty)) {
+                        CurrentItem.Dependence = null;
+                    } else {
+                        CurrentItem.Dependence = Array.ConvertAll(dependancies.Split(','), ItemDataToID).ToList();
+                    }
+
+                    // Conditionals
+                    string conditionals = lines[i++];
+                    if(conditionals.Equals(string.Empty)) {
+                        CurrentItem.Conditional = null;
+                    } else {
+                        CurrentItem.Conditional =
+                            Array.ConvertAll(conditionals.Split(';'), (input) => {
+                                return Array.ConvertAll(input.Split(','), ItemDataToID).ToList();
+                            }).ToList();
+                    }
+
+                    // Time needed
+                    CurrentItem.Time_Needed = Convert.ToInt32(lines[i++]);
+
+                    // Time available
+                    CurrentItem.Time_Available = Convert.ToInt32(lines[i++]);
+                    CurrentItem.Time_Available = (CurrentItem.Time_Available == 0) ? 63 : CurrentItem.Time_Available;
+
+                    // Setup next item
+                    CurrentItem.ID = itemID;
+                    ItemList.Add(CurrentItem);
+                    CurrentItem = new ItemObject();
+                }
             };
+        }
+
+        // Any special sections with new parsing can go here
+        private bool InSpecialSection(string header) {
+            switch(header) {
+                case "--Forbidden Item Placements--":
+                    return true;
+                default:
+                    return false;
+            }
         }
 
         private bool CheckDependence(int CurrentItem, int Target, bool skip)
@@ -804,8 +845,8 @@ namespace MMRando
 
         private bool CheckMatch(int CurrentItem, int Target)
         {
-            if (ForbiddenPlacement.ContainsKey(Target) && ForbiddenPlacement[Target].Contains(CurrentItem))
-            {
+            if(IsForbiddenPlacementLocation(CurrentItem, Target)) 
+                {
                 return false;
             }
             //check timing
@@ -843,6 +884,14 @@ namespace MMRando
             ConditionsChecked = new List<int>();
             CheckConditionals(CurrentItem, Target);
             return true;
+        }
+
+        private bool IsForbiddenPlacementLocation(int CurrentItem, int Target) {
+            if(CustomForbiddenPlacement == null) {
+                return ForbiddenPlacement.ContainsKey(Target) && ForbiddenPlacement[Target].Contains(CurrentItem);
+            } else {
+                return CustomForbiddenPlacement.ContainsKey(Target) && CustomForbiddenPlacement[Target].Contains(CurrentItem);
+            }
         }
 
         private void PlaceItem(int CurrentItem, List<int> Targets)

@@ -1318,3 +1318,9 @@ ST_Key1,ST_Key2;ST_Key1,ST_Key3;ST_Key1,ST_Key4;ST_Key2,ST_Key3;ST_Key2,ST_Key4;
 ST_Key1,ST_Key2,ST_Key3;ST_Key1,ST_Key2,ST_Key4;ST_Key1,ST_Key3,ST_Key4;ST_Key2,ST_Key3,ST_Key4
 0
 0
+--Forbidden Item Placements--
+-Keaton_Mask:M_Shield,Wallet_2-Mama_Letter
+-Mama_Letter:Bomb_Bag,Quiver_1,Bomb_Bag_1
+-Bottle_G:Hero_Bow-Light_Arrow,Lens,Hookshot,Bottle_D,M_Shield,HP_SwSch,HP_TCGame-HP_Knuckle
+-Bottle_G:Captain_Hat,Giant_Mask,WF_Map-ST_Key4,Lens_Cave_RR-SCT_PR,Lab_Fish_HP,To_GR_Grotto
+-Blast_Mask:Moon_Tear-Pendant

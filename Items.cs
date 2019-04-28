@@ -576,6 +576,11 @@ namespace MMRando
         // "HP_Choir" -> 54
         public static int ItemDataToID(string item) {
             string trimmedItem = item.Trim();
+
+            if(string.IsNullOrEmpty(trimmedItem)) {
+                throw new InvalidCastException("Can not convert empty item data into an id");
+            }
+
             if(trimmedItem.All(char.IsDigit)) {
                 return Convert.ToInt32(trimmedItem);
             } else {
@@ -609,6 +614,13 @@ namespace MMRando
             }
 
             return trimmedItem;
+        }
+        public static string ItemDataToName(int item) {
+            if(ItemNameDictionary.Count > item) {
+                return ItemNameDictionary.ElementAt(item).Key;
+            }
+
+            return item.ToString();
         }
     }
 }
